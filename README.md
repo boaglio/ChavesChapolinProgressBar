@@ -8,9 +8,16 @@ This is the [Chaves Chapolin Progress Bar](https://plugins.jetbrains.com/plugin/
 
 You can access plugin's configuration in :
 
-Settings > Tools > Chaves Chapolin Progress Bar 
 
-![settings.png](settings.png)
+Settings > Tools > Chaves Chapolin Progress Bar
+
+![settings](media/settings.png)
+
+![Chapolin](media/chapolinPB2.png)
+
+![Chapolin](media/chapolinPB.png)
+
+[plugin](media/plugin.mp4)
 
 ## Acknowledgements
 
@@ -20,5 +27,5 @@ Settings > Tools > Chaves Chapolin Progress Bar
 
 ### Code
 
-* The code for the progress bar was adapted from [MarioProgressBar](https://github.com/KikiManjaro/MarioProgressBar).
+* The code for the progress bar was adapted from [MarioProgressBar]( https://github.com/KikiManjaro/MarioProgressBar).
 * This plugin is of course heavily dependent on JetBrains' IntelliJ SDK  
