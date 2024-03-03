@@ -1,4 +1,4 @@
-package manjaro.mpb;
+package com.boaglio.ccpb;
 
 import com.intellij.ide.ui.LafManager;
 import com.intellij.ide.ui.LafManagerListener;

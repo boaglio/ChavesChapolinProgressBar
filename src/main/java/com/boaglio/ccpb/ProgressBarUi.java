@@ -1,5 +1,6 @@
-package manjaro.mpb;
+package com.boaglio.ccpb;
 
+import com.boaglio.ccpb.config.ChavesChapolinProgressBarSettingsState;
 import com.intellij.openapi.ui.GraphicsConfig;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
@@ -7,7 +8,8 @@ import com.intellij.util.ui.GraphicsUtil;
 import com.intellij.util.ui.JBUI;
 import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ui.UIUtil;
-import manjaro.mpb.config.MarioProgressBarSettingsState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 
@@ -24,15 +26,17 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProgressBarUi extends BasicProgressBarUI {
     BufferedImage bimage = null;
 
+    Logger logger = LoggerFactory.getLogger(ProgressBarUi.class.getSimpleName());
     public ProgressBarUi() {
         try {
-            bimage = ImageIO.read(this.getClass().getResource("/bricks.png"));
+            bimage = ImageIO.read(Objects.requireNonNull(this.getClass().getResource(ChavesChapolinProgressBarSettingsState.getInstance().selectedCharacterFiller.file())));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Progress Bar Error",e);
         }
     }
 
@@ -82,7 +86,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
         g.setColor(new JBColor(Gray._240.withAlpha(50), Gray._128.withAlpha(50)));
         int w = c.getWidth();
         int h = c.getPreferredSize().height;
-        if (!isEven(c.getHeight() - h)) h++;
+        if (isOdd(c.getHeight() - h)) h++;
         if (c.isOpaque()) {
             g.fillRect(0, (c.getHeight() - h) / 2, w, h);
         }
@@ -115,7 +119,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
             g.fill(area);
         }
 
-        Icons.SHELL.paintIcon(progressBar, g, offset2 - JBUIScale.scale(3), -JBUIScale.scale(-2));
+        ChavesChapolinProgressBarSettingsState.getInstance().selectedCharacterIP.getIcon().paintIcon(progressBar, g, offset2 - JBUIScale.scale(3), -JBUIScale.scale(-2));
 
         g.draw(new RoundRectangle2D.Float(1f, 1f, w - 2f - 1f, h - 2f - 1f, R, R));
         g.translate(0, -(c.getHeight() - h) / 2);
@@ -144,7 +148,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
         Insets b = progressBar.getInsets(); // area for border
         int w = progressBar.getWidth();
         int h = progressBar.getPreferredSize().height;
-        if (!isEven(c.getHeight() - h)) h++;
+        if (isOdd(c.getHeight() - h)) h++;
         int barRectWidth = w - (b.right + b.left);
         int barRectHeight = h - (b.top + b.bottom);
         if (barRectWidth <= 0 || barRectHeight <= 0) {
@@ -175,7 +179,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
         g2.fill(new RoundRectangle2D.Float(2f * off, 2f * off, amountFull - JBUIScale.scale(5f), h - JBUIScale.scale(5f), JBUIScale.scale(7f), JBUIScale.scale(7f)));
 
-        MarioProgressBarSettingsState.getInstance().selectedCharacter.getIcon().paintIcon(progressBar, g2, amountFull - JBUIScale.scale(5), -JBUIScale.scale(1));
+        ChavesChapolinProgressBarSettingsState.getInstance().selectedCharacterDP.getIcon().paintIcon(progressBar, g2, amountFull - JBUIScale.scale(5), -JBUIScale.scale(1));
         g2.translate(0, -(c.getHeight() - h) / 2);
 
         if (progressBar.isStringPainted()) {
@@ -229,9 +233,8 @@ public class ProgressBarUi extends BasicProgressBarUI {
         return JBUIScale.scale(16);
     }
 
-    private static boolean isEven(int value) {
-        return value % 2 == 0;
+    private static boolean isOdd(int value) {
+        return value % 2 != 0;
     }
 
 }
-
