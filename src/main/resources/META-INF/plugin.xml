@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.boaglio.ccpb</id>
   <name>Chaves Chapolin Progress Bar</name>
-  <version>1.1.9</version>
+  <version>1.1.11</version>
   <idea-version since-build="193"/>
   <vendor email="boaglio@gmail.com">boaglio</vendor>
 
@@ -15,7 +15,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <em>1.1.9 Creation of the Chaves Chapolin Bar Project (fork from Mario Progress)</em><br>
+      <em>1.1.11 Small image fixes</em><br>
+      <em>1.1.10 Creation of the Chaves Chapolin Bar Project (fork from Mario Progress)</em><br>
     ]]>
   </change-notes>
 

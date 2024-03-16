@@ -38,7 +38,7 @@ public class ChavesChapolinProgressBarConfigurable implements Configurable {
     boolean modifiedFiller = !mySettingsComponent.getChosenCharacterFiller().equals(settings.selectedCharacterFiller);
     modifiedFiller |= mySettingsComponent.getChosenCharacterFiller() != settings.selectedCharacterFiller;
 
-    return modifiedIP && modifiedDP && modifiedFiller;
+    return modifiedIP || modifiedDP ||modifiedFiller;
   }
 
   @Override
